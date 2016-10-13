@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
-
 class RepoList extends React.Component {
   renderList() {
+    console.log( this.props.repos)
+    if( this.props.repos) {
     return this.props.repos.map((repo) => {
       return (
         <li
@@ -18,6 +18,7 @@ class RepoList extends React.Component {
       )
     })
   }
+}
 
 
   render() {
