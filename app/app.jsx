@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 
-import Github from './components/Github';
+
 import Main from './components/Main';
+import reducers from './reducers';
 
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 //Load foundation
 $(document).foundation();
@@ -13,11 +18,9 @@ $(document).foundation();
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-  	<Route path="/" component={Main}>
-  		<IndexRoute component={Github} />
-  	</Route>
-  </Router>
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Main />
+  </Provider>
   ,
   document.getElementById('app')
 );
