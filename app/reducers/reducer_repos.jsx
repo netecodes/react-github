@@ -3,9 +3,9 @@ import { FETCH_SUCCESS, FETCH_ERROR } from '../actions/index';
 export default function(state = [], action) {
   switch (action.type) {
   case 'FETCH_SUCCESS':
-    return [ ...action.payload.data ];
+    return { data: action.payload.data, fetched: action.fetched};
   case 'FETCH_ERROR':
-    return [ action.payload ];
+    return { data: action.payload, error: action.error };
   }
   return state;
 }

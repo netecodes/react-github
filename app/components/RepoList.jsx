@@ -4,22 +4,33 @@ import { bindActionCreators } from 'redux';
 
 class RepoList extends React.Component {
   renderList() {
-    console.log( this.props.repos)
-    if( this.props.repos) {
-    return this.props.repos.map((repo) => {
+    const { data, fetched, error } = this.props.repos;
+    if(error) {
       return (
-        <li
-          key={repo.id}
-          className="expanded button hollow">
-          <a href={repo.html_url}>
-            {repo.name}
-          </a>
+        <li className="expanded button hollow">
+          {error}
         </li>
       )
-    })
+    } else if (fetched === true && data.length === 0) {
+      return (
+        <li className="expanded button hollow">
+          User has no Repos
+        </li>
+      )
+    } else if (data) {
+      return data.map((repo) => {
+        return (
+          <li
+            key={repo.id}
+            className="expanded button hollow">
+            <a href={repo.html_url}>
+              {repo.name}
+            </a>
+          </li>
+        )
+      })
+    }
   }
-}
-
 
   render() {
     return (
@@ -32,11 +43,10 @@ class RepoList extends React.Component {
   }
 }
 
-
 export default connect(
   (state) => {
     return {
-      repos: state.repos
+      repos: state.repos,
     }
   }
 )(RepoList);
