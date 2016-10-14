@@ -35,6 +35,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
+    "moxios": "^0.3.0",
     "nock": "^8.1.0",
     "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.3.0",

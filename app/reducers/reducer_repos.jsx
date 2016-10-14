@@ -5,7 +5,7 @@ export default function(state = [], action) {
   case 'FETCH_SUCCESS':
     return { data: action.payload.data, fetched: action.fetched};
   case 'FETCH_ERROR':
-    return { data: action.payload, error: action.error };
+    return { data: action.payload.data, error: action.error };
   }
   return state;
 }

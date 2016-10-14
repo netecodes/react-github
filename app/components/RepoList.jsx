@@ -7,13 +7,13 @@ class RepoList extends React.Component {
     const { data, fetched, error } = this.props.repos;
     if(error) {
       return (
-        <li className="expanded button hollow">
+        <li className="expanded alert hollow button">
           {error}
         </li>
       )
     } else if (fetched === true && data.length === 0) {
       return (
-        <li className="expanded button hollow">
+        <li className="expanded alert hollow button">
           User has no Repos
         </li>
       )
